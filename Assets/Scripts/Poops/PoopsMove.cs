@@ -4,16 +4,29 @@ using UnityEngine;
 
 public class PoopsMove : MonoBehaviour
 {
-    // Start is called before the first frame update
+
+    private int isPutOn;
+    public GameObject player;
+    public Vector3 playerMovement;
+
     void Start()
     {
-        
+        isPutOn = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    void FixedUpdate()
+    {
+        if(isPutOn>1)
+        {
+            playerMovement=player.GetComponent<newPlayerMove>().movement;
+            this.gameObject.GetComponent<Rigidbody>().MovePosition(transform.position + playerMovement);
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -24,7 +37,9 @@ public class PoopsMove : MonoBehaviour
         }
         else if (collision.gameObject.tag == "Player")
         {
-            this.gameObject.GetComponent<Rigidbody>().useGravity = false;
+            isPutOn += 1;
+            //this.gameObject.GetComponent<Rigidbody>().useGravity = false;
+            //this.gameObject.GetComponent<Rigidbody>().velocity = new Vector3(50, 0, 0);
         }
     }
 }
