@@ -8,6 +8,8 @@ public class newPlayerMove : MonoBehaviour
     float hMove;
     public Vector3 movement;
     private Rigidbody rigid;
+    public Vector3 velopcityMove;
+    public float maxSpeed;
 
     Vector3 theScale; //좌우반전용
 
@@ -50,14 +52,27 @@ public class newPlayerMove : MonoBehaviour
 
     public void Move()
     {
-
+        /* 여기는 좌표를 움직이기
         movement.Set(hMove, 0, 0);
         movement = movement.normalized * moveSpeed * Time.deltaTime; //점프할 땐 속도 변경
 
         rigid.MovePosition(transform.position + movement);
-
+        */
         //rigid.velocity = movement; //벡터 추가로 움직임
 
+        velopcityMove = new Vector3(hMove, 0, 0) * moveSpeed; //velopcity를 수정해 힘으로 캐릭터 이동
+        //rigid.velocity = velopcityMove* moveSpeed;
+
+        rigid.AddForce(velopcityMove);
+
+        if (rigid.velocity.x > maxSpeed)//오른쪽
+        {
+            rigid.velocity = new Vector3(maxSpeed, rigid.velocity.y, 0);
+        }
+        else if (rigid.velocity.x < maxSpeed * (-1))//왼쪽
+        {
+            rigid.velocity = new Vector3(maxSpeed*(-1), rigid.velocity.y, 0);
+        }
 
     }
 }

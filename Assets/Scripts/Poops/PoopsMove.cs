@@ -22,11 +22,13 @@ public class PoopsMove : MonoBehaviour
 
     void FixedUpdate()
     {
+        /*
         if(isPutOn>1)
         {
             playerMovement=player.GetComponent<newPlayerMove>().movement;
             this.gameObject.GetComponent<Rigidbody>().MovePosition(transform.position + playerMovement);
         }
+        */
     }
 
     private void OnCollisionEnter(Collision collision)
