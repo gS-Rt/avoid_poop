@@ -21,13 +21,15 @@ public class PoopGen : MonoBehaviour
         if (genTimer >= genTime)
         {
             genTimer = 0;
-
+            genPoop(42f);
         }
     }
 
     private void genPoop(float y)
     {
-        float x = Random.Range(-4f, 4f);
-        
+        xRandomRange = Random.Range(-10f, 10f);
+        Instantiate(poopPrefab, new Vector3(xRandomRange, y, 0), Quaternion.identity);
+
+
     }
 }
