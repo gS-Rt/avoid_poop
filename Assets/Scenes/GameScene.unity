@@ -400,7 +400,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   genTime: 2
   genTimer: 0
-  poopPrefab: {fileID: 1266426447868037509, guid: 754b1e14a0c9852488a5fe4029bee2b8, type: 3}
+  poopPrefab: {fileID: 4357892988894356419, guid: a1009a8f4b347614f81350fb4bc7efca, type: 3}
   xRandomRange: 0
 --- !u!1 &1504899391
 GameObject:

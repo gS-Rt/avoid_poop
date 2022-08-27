@@ -8,16 +8,23 @@ public class PoopsMove : MonoBehaviour
     private int isPutOn;
     public GameObject player;
     public Vector3 playerMovement;
+    public int poopStack;
+    private bool isBreak;
 
     void Start()
     {
         isPutOn = 0;
+        poopStack = 0;
+        isBreak = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(isBreak==true)
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     void FixedUpdate()
@@ -33,7 +40,7 @@ public class PoopsMove : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag=="wall")
+        if (collision.gameObject.tag=="wall")
         {
             Destroy(this.gameObject); //충돌하면 해당 오브젝트 삭제
         }
@@ -43,5 +50,18 @@ public class PoopsMove : MonoBehaviour
             //this.gameObject.GetComponent<Rigidbody>().useGravity = false;
             //this.gameObject.GetComponent<Rigidbody>().velocity = new Vector3(50, 0, 0);
         }
+        else if (collision.gameObject.tag == "poop")
+        {
+            if (collision.gameObject.GetComponent<PoopsMove>().poopStack == 0)
+            {
+                poopStack = 1;
+            }
+            else if (collision.gameObject.GetComponent<PoopsMove>().poopStack == 1)
+            {
+                isBreak = true;
+                collision.gameObject.GetComponent<PoopsMove>().isBreak = true;
+            }
+        }
+
     }
 }
